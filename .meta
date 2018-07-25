@@ -1,3 +1,6 @@
 {
- "projects": {}
+  "projects": {
+    "frontend-boilerplate": "git@github.com:reftoken/frontend-boilerplate.git",
+    "api-boilerplate": "git@github.com:reftoken/api-boilerplate.git"
+  }
 }
