@@ -1,0 +1,42 @@
+version: '3'
+
+# Define the services/containers to be run
+services:
+  api: #name of your service
+    build: ./api-boilerplate # specify the directory of the Dockerfile
+    command: npm start
+    container_name: boilerplate-api
+    restart: always
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "8080:8080" #specify ports forwarding
+    volumes:
+      - ./api-boilerplate:/home/web/app
+      - /home/web/app/node_modules
+    depends_on:
+      - database
+
+  database: # name of the service
+    image: mongo # specify image to build container from
+    container_name: boilerplate-db
+    ports:
+     - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+
+  react:
+    build: ./frontend-boilerplate # specify the directory of the Dockerfile
+    command: npm start
+    container_name: boilerplate-react
+    restart: always
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000" #specify ports forwarding
+    volumes:
+      - ./frontend-boilerplate:/home/web/app
+      - /home/web/app/node_modules
+
+volumes:
+  data-volume:
