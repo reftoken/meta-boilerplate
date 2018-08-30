@@ -8,6 +8,13 @@ services:
     container_name: boilerplate-api
     restart: always
     environment:
+      - FACEBOOK_APP_ID=mario
+      - FACEBOOK_CLIENT_SECRET=luigi
+      - GOOGLE_CLIENT_ID=toad
+      - GOOGLE_CLIENT_SECRET=peach
+      - JWT_SECRET=waluigi
+      - SESSION_SECRET=wario
+      - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
     ports:
       - "8080:8080" #specify ports forwarding
@@ -29,8 +36,6 @@ services:
     volumes:
       - ./frontend-boilerplate:/home/node/app
       - /home/node/app/node_modules
-    depends_on:
-      - api
 
   database: # name of the service
     image: mongo # specify image to build container from
